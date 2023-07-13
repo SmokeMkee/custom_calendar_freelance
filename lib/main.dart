@@ -9,6 +9,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -39,10 +40,10 @@ class MyApp extends StatelessWidget {
             headerRightArrowButton: 'assets/svg/right_chevron.svg',
             onPageChanged: (_) {},
             onHeaderTapped: (_) {},
+            initialDate: DateTime(2024, DateTime.november, DateTime.monday),
           ),
         ),
       ),
     );
   }
 }
-

@@ -21,6 +21,7 @@ class CustomCalendar extends StatefulWidget {
     required this.onPageChanged,
     required this.onHeaderTapped,
     required this.locale,
+    required this.initialDate,
   }) : super(key: key);
   final String pathEkadashi;
   final String pathFullMoon;
@@ -31,12 +32,19 @@ class CustomCalendar extends StatefulWidget {
   final Function(DateTime) onPageChanged;
   final Function(DateTime) onHeaderTapped;
   final String locale;
+  final DateTime initialDate;
 
   @override
   State<CustomCalendar> createState() => _CustomCalendarState();
 }
 
 class _CustomCalendarState extends State<CustomCalendar> {
+  @override
+  void initState() {
+    selectedDate = widget.initialDate;
+    super.initState();
+  }
+
   int calculateLunarDay(
       {required int day, required int month, required int year}) {
     int lunarYear = (year - 2000) + 6; // Вычисляем лунный год
@@ -108,6 +116,7 @@ class _CustomCalendarState extends State<CustomCalendar> {
                 borderRadius: BorderRadius.circular(22),
               ),
               child: TableCalendar(
+                currentDay: widget.initialDate,
                 locale: widget.locale,
                 onPageChanged: widget.onPageChanged,
                 onDaySelected: _onDaySelected,
